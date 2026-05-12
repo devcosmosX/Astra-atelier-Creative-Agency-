@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
+  background: #000000;
+  color-scheme: dark;
+
+  --bg: #050505;
+  --bg-soft: #0b0b0f;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+  --surface-border: rgba(255, 255, 255, 0.12);
+  --text: rgba(255, 255, 255, 0.72);
+  --text-strong: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.48);
+  --accent: #8d5bff;
+  --accent-soft: #c4b5fd;
+  --cyan: #67e8f9;
+  --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.45);
+  --container: 1240px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000000;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(141, 91, 255, 0.16), transparent 32%),
+    linear-gradient(180deg, #030303 0%, #07070a 42%, #030303 100%);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-strong);
+  font-weight: 400;
+  font-style: normal;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  font-stretch: 100%;
+  font-variation-settings: normal;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  text-transform: none;
+  text-decoration: none;
+  text-align: start;
+  text-indent: 0;
+}
+
+h1 {
+  font-size: clamp(3.8rem, 9vw, 6rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+::selection {
+  background: rgba(141, 91, 255, 0.35);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+/* Made with Bob */
