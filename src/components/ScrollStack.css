@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
   overflow-x: visible;
+  overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
@@ -12,9 +12,21 @@
   will-change: scroll-position;
 }
 
+.scroll-stack-scroller.scroll-stack-scroller--window {
+  height: auto;
+  overflow: visible;
+  overscroll-behavior: auto;
+  will-change: auto;
+}
+
 .scroll-stack-inner {
   padding: 20vh 5rem 50rem;
   min-height: 100vh;
+}
+
+.scroll-stack-scroller.scroll-stack-scroller--window .scroll-stack-inner {
+  padding: 12vh 0 18vh;
+  min-height: auto;
 }
 
 .scroll-stack-card-wrapper {

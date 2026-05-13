@@ -57,39 +57,45 @@ const ScrollReveal = ({
 
       const wordElements = el.querySelectorAll('.word');
 
-      gsap.fromTo(
-        wordElements,
-        { opacity: baseOpacity, willChange: 'opacity' },
-        {
-          ease: 'none',
-          opacity: 1,
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: el,
-            scroller,
-            start: 'top bottom-=12%',
-            end: wordAnimationEnd,
-            scrub: true,
-          },
+      gsap.set(wordElements, {
+        opacity: baseOpacity,
+        filter: enableBlur ? `blur(${blurStrength}px)` : 'blur(0px)',
+        yPercent: 18,
+        willChange: 'opacity, filter, transform',
+      });
+
+      const revealTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: 'top bottom-=8%',
+          end: wordAnimationEnd,
+          scrub: 1.2,
         },
-      );
+      });
+
+      revealTimeline.to(wordElements, {
+        opacity: 1,
+        yPercent: 0,
+        ease: 'power2.out',
+        stagger: {
+          each: 0.08,
+          from: 'start',
+        },
+      });
 
       if (enableBlur) {
-        gsap.fromTo(
+        revealTimeline.to(
           wordElements,
-          { filter: `blur(${blurStrength}px)` },
           {
-            ease: 'none',
             filter: 'blur(0px)',
-            stagger: 0.12,
-            scrollTrigger: {
-              trigger: el,
-              scroller,
-              start: 'top bottom-=12%',
-              end: wordAnimationEnd,
-              scrub: true,
+            ease: 'power2.out',
+            stagger: {
+              each: 0.08,
+              from: 'start',
             },
           },
+          0,
         );
       }
     }, el);

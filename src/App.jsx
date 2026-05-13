@@ -1,4 +1,5 @@
 import { Suspense, lazy } from 'react';
+import skitroImage from './images/SKITRO.png';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import ScrollReveal from './components/ScrollReveal';
 import './App.css';
@@ -36,31 +37,61 @@ const socialItems = [
   { label: 'LinkedIn', link: 'https://www.linkedin.com/' },
 ];
 
+const footerNavigation = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: 'Pricing', href: '/#pricing' },
+      { label: 'Process', href: '/#process' },
+    ],
+  },
+  {
+    title: 'Capabilities',
+    links: [
+      { label: 'Brand Strategy', href: '/services' },
+      { label: 'Identity Systems', href: '/services' },
+      { label: 'Website Design', href: '/services' },
+      { label: 'Launch Support', href: '/services' },
+    ],
+  },
+  {
+    title: 'Contact',
+    links: [
+      { label: 'hello at astraatelier dot studio', href: 'mailto:hello@astraatelier.studio' },
+      { label: 'India studio contact line', href: 'tel:+910000000000' },
+      { label: 'Schedule intro call', href: 'mailto:hello@astraatelier.studio?subject=Project%20Inquiry' },
+      { label: 'Mumbai and remote worldwide', href: '#contact' },
+    ],
+  },
+];
+
 const stats = [
-  { value: '42+', label: 'launches shaped for premium-first brands' },
-  { value: '12w', label: 'average timeline from strategy to go-live' },
-  { value: '91%', label: 'retainer extension rate across long-term partners' },
+  { value: '42', label: 'Launches', tone: 'violet' },
+  { value: '12 W', label: 'Timeline', tone: 'cyan' },
+  { value: '90%', label: 'Retention', tone: 'neutral' },
 ];
 
 const detailedServices = [
   {
     icon: '01',
     category: 'Positioning',
-    title: 'Brand Strategy & Market Narrative',
+    title: 'Brand Strategy and Market Narrative',
     description:
-      'Clarify who you are, what you stand for, and why premium buyers should trust you before a single screen is designed.',
-    timeline: '2–3 weeks',
-    bestFor: 'Early-stage founders, repositioning brands, premium service firms',
+      'Clarify your brand position market voice and business value so customers in India and worldwide markets understand why your company matters before design begins.',
+    timeline: '2 to 3 weeks',
+    bestFor: 'Early stage founders repositioning brands premium service firms',
     deliverables: ['Positioning framework', 'Messaging architecture', 'Audience tension map', 'Offer hierarchy'],
-    benefits: ['Sharper differentiation', 'Better investor and customer communication', 'Faster downstream creative decisions'],
+    benefits: ['Sharper differentiation', 'Better customer communication', 'Faster creative decisions'],
   },
   {
     icon: '02',
     category: 'Identity',
     title: 'Visual Identity Systems',
     description:
-      'Build a modern identity language with scalable typography, palette logic, layout rhythm, and premium brand assets.',
-    timeline: '3–4 weeks',
+      'Build a premium visual identity system with scalable typography color logic and brand assets that support digital growth across India and global audiences.',
+    timeline: '3 to 4 weeks',
     bestFor: 'Founders needing a complete visual system for launch or growth',
     deliverables: ['Logo direction', 'Type and color system', 'Art direction principles', 'Brand guideline kit'],
     benefits: ['Cohesive brand presence', 'Stronger memorability', 'Asset consistency across channels'],
@@ -68,12 +99,12 @@ const detailedServices = [
   {
     icon: '03',
     category: 'Web',
-    title: 'Premium Website Design & Build',
+    title: 'Premium Website Design and Build',
     description:
-      'Design and develop a high-conviction marketing site that blends editorial polish, conversion clarity, and responsive performance.',
-    timeline: '5–8 weeks',
-    bestFor: 'Agency sites, SaaS launches, portfolio brands, high-ticket offers',
-    deliverables: ['UX structure', 'Responsive UI design', 'Motion direction', 'Production-ready front-end build'],
+      'Design and develop a high performance marketing website that combines premium design responsive development and conversion focused user journeys for modern businesses.',
+    timeline: '5 to 8 weeks',
+    bestFor: 'Agency sites SaaS launches portfolio brands high ticket offers',
+    deliverables: ['UX structure', 'Responsive UI design', 'Motion direction', 'Production ready front end build'],
     benefits: ['Stronger first impressions', 'Higher inquiry quality', 'Better storytelling at every breakpoint'],
   },
   {
@@ -81,19 +112,19 @@ const detailedServices = [
     category: 'Launch',
     title: 'Launch Campaign Systems',
     description:
-      'Create a full launch ecosystem with landing pages, rollout sequencing, campaign assets, and clear narrative control.',
-    timeline: '3–5 weeks',
-    bestFor: 'Product launches, service launches, event campaigns, founder announcements',
+      'Create a launch system with landing pages rollout planning and campaign assets that help brands in India and global markets go live with clarity and confidence.',
+    timeline: '3 to 5 weeks',
+    bestFor: 'Product launches service launches event campaigns founder announcements',
     deliverables: ['Launch landing page', 'Creative rollout plan', 'Asset direction', 'Campaign messaging toolkit'],
-    benefits: ['Aligned multi-channel rollout', 'Cleaner go-to-market execution', 'More premium launch perception'],
+    benefits: ['Aligned launch rollout', 'Cleaner market execution', 'More premium launch perception'],
   },
   {
     icon: '05',
     category: 'Content',
-    title: 'Content & Editorial Systems',
+    title: 'Content and Editorial Systems',
     description:
-      'Translate brand strategy into repeatable content formats, page modules, storytelling templates, and editorial direction.',
-    timeline: '2–4 weeks',
+      'Turn strategy into content systems page structures and editorial direction that help your business publish with consistency and improve search visibility.',
+    timeline: '2 to 4 weeks',
     bestFor: 'Teams needing a smarter ongoing content engine',
     deliverables: ['Content pillars', 'Page module library', 'Editorial tone guide', 'Campaign prompt systems'],
     benefits: ['Less content chaos', 'Faster asset production', 'More strategic publishing consistency'],
@@ -101,22 +132,22 @@ const detailedServices = [
   {
     icon: '06',
     category: 'Motion',
-    title: 'Motion Direction & Interaction Design',
+    title: 'Motion Direction and Interaction Design',
     description:
-      'Use motion intentionally to shape attention, improve flow, and make the interface feel distinctly premium without becoming noisy.',
-    timeline: '2–3 weeks',
+      'Use motion design and interaction systems to guide attention improve page flow and elevate the digital experience without distracting from your message.',
+    timeline: '2 to 3 weeks',
     bestFor: 'Brands that want cinematic polish and interaction detail',
-    deliverables: ['Motion principles', 'Micro-interaction spec', 'Scroll choreography', 'Prototype direction'],
+    deliverables: ['Motion principles', 'Micro interaction spec', 'Scroll choreography', 'Prototype direction'],
     benefits: ['Higher perceived quality', 'Better engagement depth', 'More memorable interface behavior'],
   },
   {
     icon: '07',
     category: 'Conversion',
-    title: 'Conversion UX & Offer Architecture',
+    title: 'Conversion UX and Offer Architecture',
     description:
-      'Refine how users move from curiosity to confidence with better page sequencing, trust framing, and action design.',
-    timeline: '2–3 weeks',
-    bestFor: 'High-ticket offers, agencies, consultants, B2B lead generation',
+      'Refine the customer journey with stronger page sequencing trust content and call to action strategy that improves lead quality and inquiry intent.',
+    timeline: '2 to 3 weeks',
+    bestFor: 'High ticket offers agencies consultants B2B lead generation',
     deliverables: ['Conversion audit', 'CTA framework', 'Trust asset planning', 'Offer page optimization'],
     benefits: ['Improved lead quality', 'Reduced friction', 'Stronger inquiry intent'],
   },
@@ -125,11 +156,11 @@ const detailedServices = [
     category: 'Partnership',
     title: 'Embedded Creative Retainer',
     description:
-      'Operate with a strategic creative partner across design, messaging, web iteration, and campaign rollout over time.',
+      'Work with a long term creative partner for ongoing design messaging website improvements and campaign support as your business grows.',
     timeline: 'Monthly engagement',
-    bestFor: 'Growing teams needing senior creative continuity without full-time overhead',
+    bestFor: 'Growing teams needing senior creative continuity without full time overhead',
     deliverables: ['Monthly strategy sprints', 'Creative production support', 'Website iteration queue', 'Campaign refinement'],
-    benefits: ['Faster execution cadence', 'Consistent creative quality', 'Long-term brand system evolution'],
+    benefits: ['Faster execution cadence', 'Consistent creative quality', 'Long term brand system evolution'],
   },
 ];
 
@@ -140,7 +171,7 @@ const pricingPackages = [
     label: 'Foundational launch',
     title: 'A focused identity package for early stage brands.',
     description: 'Clear scope for teams that need a polished launch presence.',
-    price: '$3.8k',
+    price: 'Starting at 3 point 8k',
     billing: 'one time project',
     timeline: '2 to 3 weeks',
     accent: 'Core',
@@ -155,7 +186,7 @@ const pricingPackages = [
     label: 'Growth ready system',
     title: 'A complete brand and website package for modern businesses.',
     description: 'Built for teams that need stronger positioning and a premium digital presence.',
-    price: '$8.9k',
+    price: 'Starting at 8 point 9k',
     billing: 'full scope engagement',
     timeline: '5 to 7 weeks',
     accent: 'Most selected',
@@ -170,7 +201,7 @@ const pricingPackages = [
     label: 'Embedded creative partner',
     title: 'A long term creative system for ambitious and scaling teams.',
     description: 'Designed for brands that need strategy design and rollout support at a higher level.',
-    price: '$16k+',
+    price: 'Starting at 16k and above',
     billing: 'project and ongoing support',
     timeline: '8 to 12 weeks and retainer',
     accent: 'Priority',
@@ -184,36 +215,39 @@ const pricingPackages = [
 const processSteps = [
   {
     step: '01',
-    title: 'Discovery & Positioning',
-    copy: 'We identify the category tension, your unfair advantage, and the emotional narrative customers should remember.',
+    title: 'Strategy and clarity',
+    copy: 'We audit your market offer and audience tension to define the strategic direction that should guide every page and every message.',
+    detail: 'Research positioning workshops message framing and conversion priorities create the foundation before visuals begin.',
   },
   {
     step: '02',
-    title: 'Creative Direction',
-    copy: 'We develop the site’s visual behavior, content hierarchy, motion grammar, and premium interaction system.',
+    title: 'Creative system design',
+    copy: 'We shape the visual language interface rhythm and storytelling structure into one premium direction that feels intentional at every breakpoint.',
+    detail: 'This phase aligns art direction content hierarchy interaction patterns and brand atmosphere into a cohesive experience.',
   },
   {
     step: '03',
-    title: 'Build & Iterate',
-    copy: 'We turn the direction into a responsive launch-ready experience, then optimize the story based on real feedback.',
+    title: 'Launch ready execution',
+    copy: 'We build refine and prepare the experience for launch so the transition from concept to live website feels polished stable and commercially focused.',
+    detail: 'Responsive implementation QA launch preparation and final refinement ensure the section flows naturally into the rest of the website.',
   },
 ];
 
 const showcaseCards = [
   {
-    category: 'Luxury Real Estate',
-    title: 'Elevated a boutique developer with a cinematic conversion journey.',
-    image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=80',
+    category: 'Brand Direction',
+    title: 'Premium product storytelling with a clean editorial layout',
+    image: 'https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&w=1400&q=80',
   },
   {
-    category: 'AI SaaS',
-    title: 'Reframed complex product value into a sharp founder-led narrative.',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+    category: 'Website Experience',
+    title: 'Creative teams shaping refined digital journeys and modern interfaces',
+    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=80',
   },
   {
-    category: 'Fashion Commerce',
-    title: 'Built a launch system that merged editorial energy with sales clarity.',
-    image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80',
+    category: 'Launch Campaign',
+    title: 'Visual systems built for campaigns content and brand growth',
+    image: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1400&q=80',
   },
 ];
 
@@ -227,7 +261,7 @@ const servicePageSections = [
   {
     kicker: 'Core service',
     number: '01',
-    title: 'Brand strategy that gives premium businesses a sharper point of view.',
+    title: 'Brand strategy that gives premium businesses a sharper point of view',
     body:
       'We define the market narrative positioning framework and message architecture so every visual decision is grounded in strategic clarity.',
     notes: ['Audience tension mapping', 'Offer hierarchy', 'Message pillars', 'Category framing'],
@@ -235,7 +269,7 @@ const servicePageSections = [
   {
     kicker: 'Core service',
     number: '02',
-    title: 'Identity systems that feel refined scalable and unmistakably modern.',
+    title: 'Identity systems that feel refined scalable and unmistakably modern',
     body:
       'We create visual systems that hold up across digital touchpoints with disciplined typography layout logic and art direction detail.',
     notes: ['Logo system', 'Typography scale', 'Color architecture', 'Guideline deck'],
@@ -243,7 +277,7 @@ const servicePageSections = [
   {
     kicker: 'Core service',
     number: '03',
-    title: 'Web design and front end execution built for premium conversion.',
+    title: 'Web design and front end execution built for premium conversion',
     body:
       'From content hierarchy to interaction rhythm we shape website experiences that feel editorial immersive and commercially sharp.',
     notes: ['UX structure', 'Responsive UI', 'Motion layer', 'Production build'],
@@ -251,7 +285,7 @@ const servicePageSections = [
   {
     kicker: 'Core service',
     number: '04',
-    title: 'Launch systems that turn creative direction into visible momentum.',
+    title: 'Launch systems that turn creative direction into visible momentum',
     body:
       'We align pages rollout assets and campaign sequencing so launches feel coordinated elevated and ready for attention.',
     notes: ['Launch page', 'Campaign assets', 'Rollout sequence', 'Creative toolkit'],
@@ -306,17 +340,17 @@ const capabilityColumns = [
 const parallaxFeatures = [
   {
     label: 'Narrative led',
-    title: 'Asymmetric layouts that feel editorial rather than templated.',
+    title: 'Asymmetric layouts that feel editorial rather than templated',
     copy: 'Each section is designed to guide attention in a more cinematic sequence with contrast depth and spatial rhythm.',
   },
   {
     label: 'Conversion aware',
-    title: 'Creative systems that stay commercially focused.',
+    title: 'Creative systems that stay commercially focused',
     copy: 'Aesthetic detail is always connected to message clarity action design and trust building across the journey.',
   },
   {
     label: 'Built to scale',
-    title: 'A visual system that grows with the brand.',
+    title: 'A visual system that grows with the brand',
     copy: 'From a single launch page to a larger website ecosystem the design language stays controlled and recognizable.',
   },
 ];
@@ -335,6 +369,78 @@ const servicesFaq = [
     answer: 'Yes implementation support refinement and campaign rollout planning can be included depending on the engagement model.',
   },
 ];
+
+function ProcessSection() {
+  return (
+    <section className="process-section section-frame" id="process">
+      <div className="process-shell">
+        <div className="section-heading process-heading">
+          <span className="section-kicker">Process from strategy to launch</span>
+          <h2>A clearer process with one continuous page scroll and a more guided story.</h2>
+          <p>
+            This section now moves with the main website scroll so visitors stay oriented while each stage layers in and
+            releases naturally back into the rest of the page.
+          </p>
+        </div>
+
+        <div className="process-overview">
+          <div className="process-overview-card">
+            <span>Why this changed</span>
+            <p>
+              The previous stacked area introduced a separate scrollbar which made the experience feel isolated from the
+              website flow.
+            </p>
+          </div>
+          <div className="process-overview-card">
+            <span>What is better now</span>
+            <p>
+              Visitors scroll once through the page while the cards animate in sequence then hand off smoothly to the
+              next section without confusion.
+            </p>
+          </div>
+        </div>
+
+        <Suspense fallback={<div className="section-block-fallback section-block-fallback--tall" aria-hidden="true" />}>
+          <ScrollStackModule
+            className="process-stack"
+            itemDistance={90}
+            itemScale={0.03}
+            itemStackDistance={28}
+            stackPosition="18%"
+            scaleEndPosition="8%"
+            baseScale={0.88}
+            rotationAmount={-2}
+            blurAmount={0.8}
+            useWindowScroll
+          >
+            {processSteps.map((item) => (
+              <ScrollStackModule.ScrollStackItem key={item.step} itemClassName="process-stack-card">
+                <article className="process-card">
+                  <div className="process-card__top">
+                    <span className="process-card__step">{item.step}</span>
+                    <span className="process-card__eyebrow">Astra Atelier methodology</span>
+                  </div>
+
+                  <div className="process-card__body">
+                    <div className="process-card__headline">
+                      <h3>{item.title}</h3>
+                      <p>{item.copy}</p>
+                    </div>
+
+                    <div className="process-card__detail">
+                      <span>Phase focus</span>
+                      <p>{item.detail}</p>
+                    </div>
+                  </div>
+                </article>
+              </ScrollStackModule.ScrollStackItem>
+            ))}
+          </ScrollStackModule>
+        </Suspense>
+      </div>
+    </section>
+  );
+}
 
 function DesktopNavigation() {
   return (
@@ -398,21 +504,20 @@ function HomepageServicesPreview() {
         <div className="services-intro">
           <div className="section-heading services-heading">
             <span className="section-kicker">Service architecture</span>
-            <h2>Four high impact service offers presented with the same premium structure and clarity as the wider brand system.</h2>
+            <h2>Creative agency services for brands in India and worldwide.</h2>
             <p>
-              The homepage now surfaces only the most important offers first so the experience stays focused.
-              Visitors can then move into a dedicated services page for the full strategic picture.
+              Explore our core services in brand strategy website design and launch support.
             </p>
           </div>
 
           <div className="services-side-stack">
             <div className="services-side-note">
               <span>Preview logic</span>
-              <p>A concise homepage preview keeps attention on the strongest offer categories without overwhelming the initial journey.</p>
+              <p>A simple preview helps visitors understand the main service categories fast.</p>
             </div>
             <div className="services-side-note">
               <span>Next step</span>
-              <p>The dedicated services page expands the offer system into a more immersive editorial and interactive presentation.</p>
+              <p>The full services page shares more detail for search visibility and lead generation.</p>
             </div>
           </div>
         </div>
@@ -420,7 +525,7 @@ function HomepageServicesPreview() {
         <div className="services-feature-band">
           <div className="services-band-copy">
             <span className="section-kicker">Creative systems</span>
-            <h3>Each homepage card introduces a service clearly while the full services page reveals the deeper methodology behind it.</h3>
+            <h3>Each card highlights one core service with a clear and simple overview.</h3>
           </div>
           <div className="services-band-visual" aria-hidden="true">
             <Suspense fallback={<div className="section-block-fallback" aria-hidden="true" />}>
@@ -457,22 +562,33 @@ function HomepageServicesPreview() {
                 <div className="service-icon-badge">{service.icon}</div>
                 <div className="service-meta-block">
                   <span className="service-category">{service.category}</span>
+                  <span className="service-card-index">
+                    {String(detailedServices.indexOf(service) + 1).padStart(2, '0')}
+                  </span>
                 </div>
               </div>
 
               <div className="service-detail-main">
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
+                <div className="service-detail-heading">
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+
+                <div className="service-feature-strip">
+                  {service.deliverables.slice(0, 2).map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
               </div>
 
               <div className="service-quick-facts">
                 <div>
                   <span>Timeline</span>
-                  <strong>{service.timeline}</strong>
+                  <strong>{removePunctuation(service.timeline)}</strong>
                 </div>
                 <div>
                   <span>Best for</span>
-                  <strong>{service.bestFor}</strong>
+                  <strong>{removePunctuation(service.bestFor)}</strong>
                 </div>
               </div>
 
@@ -486,8 +602,8 @@ function HomepageServicesPreview() {
                   </ul>
                 </div>
 
-                <div className="service-list-block">
-                  <span>Benefits</span>
+                <div className="service-list-block service-list-block--benefits">
+                  <span>Results</span>
                   <ul>
                     {service.benefits.slice(0, 3).map((item) => (
                       <li key={item}>{item}</li>
@@ -497,8 +613,10 @@ function HomepageServicesPreview() {
               </div>
 
               <div className="service-card-footer">
+                <div className="service-card-footer__meta">
+                  <span>Explore the full service breakdown</span>
+                </div>
                 <Link to="/services">Show more</Link>
-                <span>View full service page</span>
               </div>
             </article>
           ))}
@@ -511,6 +629,87 @@ function HomepageServicesPreview() {
         </div>
       </div>
     </section>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer section-frame">
+      <div className="site-footer__panel">
+        <div className="site-footer__top">
+          <div className="site-footer__brand">
+            <span className="section-kicker">Astra Atelier</span>
+            <h2>Creative agency for premium brands in India and worldwide.</h2>
+            <p>
+              Brand strategy website design and launch support for founders and growing businesses.
+            </p>
+
+            <div className="site-footer__contact-cards">
+              <a className="site-footer__contact-card" href="mailto:hello@astraatelier.studio">
+                <span>Email</span>
+                <strong>hello@astraatelier.studio</strong>
+              </a>
+              <a className="site-footer__contact-card" href="tel:+910000000000">
+                <span>Call</span>
+                <strong>India studio contact line</strong>
+              </a>
+            </div>
+          </div>
+
+          <div className="site-footer__nav-grid">
+            {footerNavigation.map((group) => (
+              <div className="site-footer__nav-group" key={group.title}>
+                <span>{group.title}</span>
+                <ul>
+                  {group.links.map((item) => (
+                    <li key={item.label}>
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            <div className="site-footer__nav-group">
+              <span>Social</span>
+              <ul>
+                {socialItems.map((item) => (
+                  <li key={item.label}>
+                    <a href={item.link} target="_blank" rel="noreferrer">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="site-footer__middle">
+          <div className="site-footer__insight">
+            <span>Availability</span>
+            <strong>Available for selected website launches and brand projects.</strong>
+          </div>
+          <div className="site-footer__insight">
+            <span>Best fit</span>
+            <strong>Best for founders teams and premium businesses that need strategy design and execution.</strong>
+          </div>
+          <div className="site-footer__insight">
+            <span>Delivery mode</span>
+            <strong>Remote first with clear milestones weekly reviews and launch support.</strong>
+          </div>
+        </div>
+
+        <div className="site-footer__bottom">
+          <p>© 2026 Astra Atelier. Designed for premium digital launches and modern brand systems.</p>
+          <div className="site-footer__bottom-links">
+            <a href="/#home">Back to top</a>
+            <a href="/services">Full services</a>
+            <a href="mailto:hello@astraatelier.studio">Start a project</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -541,18 +740,11 @@ function HomePage() {
         <MobileNavigation />
 
         <div className="hero-content section-frame">
-          <div className="eyebrow-row">
-            <span className="eyebrow-meta">Strategy • Design • Motion • Launch Systems</span>
-          </div>
-
           <div className="hero-grid hero-grid--single">
             <div className="hero-copy hero-copy--wide">
-              <h1>
-                {removePunctuation('We build digital brands that feel cinematic, clear, and conversion-ready.')}
-              </h1>
+              <h1>{removePunctuation('Astra Atelier creative agency for branding websites and digital growth')}</h1>
               <p className="hero-description">
-                Astra Atelier is a creative partner for ambitious founders, modern agencies, and
-                premium teams that need strategy, storytelling, and web execution to move as one.
+                Astra Atelier helps modern brands grow with premium website design branding and digital strategy.
               </p>
 
               <div className="hero-actions">
@@ -568,9 +760,9 @@ function HomePage() {
 
           <div className="hero-stats">
             {stats.map((item) => (
-              <div className="stat-card" key={item.label}>
+              <div className={`stat-card stat-card--${item.tone}`} key={item.value}>
+                <span className="stat-card__label">{item.label}</span>
                 <strong>{item.value}</strong>
-                <span>{item.label}</span>
               </div>
             ))}
           </div>
@@ -579,15 +771,15 @@ function HomePage() {
 
       <section className="statement-section section-frame">
         <ScrollReveal
-          baseOpacity={0}
+          baseOpacity={0.08}
           enableBlur
-          baseRotation={4}
-          blurStrength={8}
+          baseRotation={2}
+          blurStrength={6}
+          rotationEnd="bottom center"
+          wordAnimationEnd="bottom 62%"
           textClassName="statement-text"
         >
-          The best agency websites do more than look impressive. They clarify value, build
-          emotional authority, and create momentum at every scroll depth. We design for that exact
-          outcome.
+          Great agency websites improve search visibility, build trust, and turn visitors into qualified leads through strategic design, compelling content, and seamless user experiences that guide prospects through every stage of the buyer journey while showcasing expertise and establishing credibility as visitors scroll and explore.
         </ScrollReveal>
       </section>
 
@@ -597,10 +789,9 @@ function HomePage() {
         <div className="pricing-shell">
           <div className="section-heading pricing-heading">
             <span className="section-kicker">Pricing structure</span>
-            <h2 id="pricing-heading">Three clear engagement options designed for modern creative agency clients.</h2>
+            <h2 id="pricing-heading">Simple pricing for creative projects and website growth.</h2>
             <p>
-              A simplified pricing system with focused scope premium positioning and professional content
-              for founders teams and long term partners.
+              Choose the right plan for your brand website and launch goals.
             </p>
           </div>
 
@@ -621,17 +812,19 @@ function HomePage() {
                     </div>
                   </div>
 
-                  <div className="pricing-card__headline">
-                    <h3>{pkg.tier}</h3>
-                    <p>{pkg.title}</p>
-                  </div>
-
-                  <div className="pricing-card__price-block">
-                    <div className="pricing-card__price-line">
-                      <strong>{pkg.price}</strong>
-                      <span>{pkg.billing}</span>
+                  <div className="pricing-card__hero">
+                    <div className="pricing-card__headline">
+                      <h3>{pkg.tier}</h3>
+                      <p>{pkg.title}</p>
                     </div>
-                    <p>{pkg.description}</p>
+
+                    <div className="pricing-card__price-block">
+                      <div className="pricing-card__price-line">
+                        <strong>{pkg.price}</strong>
+                        <span>{pkg.billing}</span>
+                      </div>
+                      <p>{pkg.description}</p>
+                    </div>
                   </div>
 
                   <div className="pricing-card__meta">
@@ -652,7 +845,7 @@ function HomePage() {
                             className={isPremium ? 'pricing-feature pricing-feature--premium' : 'pricing-feature'}
                           >
                             <span className="pricing-feature__icon" aria-hidden="true">
-                              {isPremium ? '◆' : '•'}
+                              {isPremium ? 'Premium' : 'Included'}
                             </span>
                             <span>{feature}</span>
                           </li>
@@ -661,9 +854,11 @@ function HomePage() {
                     </ul>
                   </div>
 
-                  <a className="pricing-cta" href="#contact">
-                    {pkg.cta}
-                  </a>
+                  <div className="pricing-card__footer">
+                    <a className="pricing-cta" href="#contact">
+                      {pkg.cta}
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
@@ -674,7 +869,7 @@ function HomePage() {
       <section className="bento-section-wrapper section-frame">
         <div className="section-heading narrow">
           <span className="section-kicker">Capability map</span>
-          <h2>Interactive systems for modern creative operations.</h2>
+          <h2>Creative capabilities for strategy design and digital growth.</h2>
         </div>
         <Suspense fallback={<div className="section-block-fallback" aria-hidden="true" />}>
           <MagicBento
@@ -695,7 +890,7 @@ function HomePage() {
       <section className="process-section section-frame" id="process">
         <div className="section-heading">
           <span className="section-kicker">Process</span>
-          <h2>A strategic workflow that turns abstract ambition into concrete market presence.</h2>
+          <h2>A clear process from strategy to launch.</h2>
         </div>
 
         <div className="stack-shell">
@@ -727,20 +922,18 @@ function HomePage() {
       <section className="team-section section-frame" id="team">
         <div className="section-heading narrow">
           <span className="section-kicker">Creative lead</span>
-          <h2>The kind of embedded partner founders call when brand and build must align.</h2>
+          <h2>A creative partner for strategy design and launch support.</h2>
         </div>
 
         <div className="team-grid">
           <div className="team-copy">
             <p>
-              We work like an in-house creative director, digital strategist, and product-minded
-              developer in one rhythm. That means faster decisions, cleaner launches, and fewer
-              disconnects between what the brand says and what the website actually does.
+              We bring strategy design and website thinking into one focused workflow for faster and clearer execution.
             </p>
             <ul className="team-points">
-              <li>Founder-led strategy and presentation systems</li>
-              <li>Responsive execution with high-end interaction design</li>
-              <li>Launch content, campaign assets, and motion cohesion</li>
+              <li>Founder led strategy and presentation systems</li>
+              <li>Responsive execution with premium website interaction design</li>
+              <li>Launch content campaign assets and digital brand cohesion</li>
             </ul>
           </div>
 
@@ -748,7 +941,7 @@ function HomePage() {
             <Suspense fallback={<div className="profile-card-fallback" aria-hidden="true" />}>
               <ProfileCard
                 name="Aria Bennett"
-                title="Creative Director & Digital Strategist"
+                title="Creative Director and Digital Strategist"
                 handle="ariaatelier"
                 status="Available for select Q3 projects"
                 contactText="Book intro call"
@@ -770,23 +963,39 @@ function HomePage() {
       <section className="showcase-section section-frame">
         <div className="section-heading">
           <span className="section-kicker">Selected directions</span>
-          <h2>Visual references curated with premium editorial energy.</h2>
+          <h2>Selected brand and website references.</h2>
           <p>
-            Imagery is sourced from Unsplash-style editorial photography to keep the concept sharp,
-            aspirational, and presentation-ready.
+            A quick look at the visual quality and direction behind our work.
           </p>
         </div>
 
-        <div className="showcase-grid">
-          {showcaseCards.map((card) => (
-            <article className="showcase-card" key={card.title}>
-              <img src={card.image} alt={card.title} loading="lazy" decoding="async" />
-              <div className="showcase-copy">
-                <span>{card.category}</span>
-                <h3>{card.title}</h3>
-              </div>
-            </article>
-          ))}
+        <div className="showcase-editorial-layout">
+          <article className="showcase-feature-card">
+            <div className="showcase-feature-card__media">
+              <img src={skitroImage} alt="Selected brand and website reference project preview" loading="lazy" decoding="async" />
+            </div>
+            <div className="showcase-feature-card__content">
+              <span className="showcase-feature-card__eyebrow">Featured direction</span>
+              <h3>Creative website references shaped with stronger imagery layout rhythm and premium digital storytelling.</h3>
+              <p>
+                This section now presents a more editorial visual mood with layered imagery stronger hierarchy and a more curated creative presentation.
+              </p>
+            </div>
+          </article>
+
+          <div className="showcase-grid">
+            {showcaseCards.map((card) => (
+              <article className="showcase-card" key={card.title}>
+                <div className="showcase-card__image-wrap">
+                  <img src={card.image} alt={card.title} loading="lazy" decoding="async" />
+                </div>
+                <div className="showcase-copy">
+                  <span>{card.category}</span>
+                  <h3>{card.title}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -794,16 +1003,18 @@ function HomePage() {
         <div className="cta-panel">
           <div>
             <span className="section-kicker">Next step</span>
-            <h2>Need an agency site that feels custom, premium, and strategically intentional?</h2>
+            <h2>Need a website that builds trust and drives leads</h2>
           </div>
           <div className="cta-actions">
             <a className="primary-button" href="mailto:hello@astraatelier.studio">
-              hello@astraatelier.studio
+              hello at astraatelier dot studio
             </a>
-            <p>Creative direction, UX, motion systems, and launch-ready implementation.</p>
+            <p>Creative direction website design development and launch support.</p>
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }
@@ -835,11 +1046,11 @@ function ServicesPage() {
 
         <div className="services-hero-content section-frame">
           <div className="section-heading narrow">
-            <span className="section-kicker">Dedicated services page</span>
-            <h1>Creative services designed as a full premium system rather than a generic agency menu.</h1>
+            <span className="section-kicker">Creative services page</span>
+            <h1>Creative agency services for businesses in India and worldwide brands seeking premium digital growth.</h1>
             <p>
-              This page expands the service architecture into a more immersive experience with layered storytelling
-              gradient cards interactive sections and award-style layouts that match the site visual language.
+              Explore a complete service system covering brand strategy visual identity website design launch planning
+              and conversion focused creative support for modern companies.
             </p>
           </div>
 
@@ -856,8 +1067,8 @@ function ServicesPage() {
 
       <section className="services-page-section section-frame">
         <div className="section-heading">
-          <span className="section-kicker">Core offers</span>
-          <h2>Four principal service tracks that anchor the entire creative engagement model.</h2>
+          <span className="section-kicker">Core service offers</span>
+          <h2>Four core service tracks that define our creative agency model for premium businesses.</h2>
         </div>
 
         <div className="services-page-grid">
@@ -879,8 +1090,8 @@ function ServicesPage() {
 
       <section className="services-page-section section-frame services-creative-bento">
         <div className="section-heading narrow">
-          <span className="section-kicker">Creative section one</span>
-          <h2>A bento style capability layout with layered gradients and hover shifts.</h2>
+          <span className="section-kicker">Creative capability blocks</span>
+          <h2>Specialist creative capabilities that support brand growth website performance and stronger digital presence.</h2>
         </div>
 
         <div className="services-bento-grid">
@@ -895,8 +1106,8 @@ function ServicesPage() {
 
       <section className="services-page-section section-frame services-timeline-section">
         <div className="section-heading">
-          <span className="section-kicker">Creative section two</span>
-          <h2>A staggered timeline that presents the service journey with more rhythm and depth.</h2>
+          <span className="section-kicker">Service journey</span>
+          <h2>A clear project timeline showing how strategy design and launch move from discovery to delivery.</h2>
         </div>
 
         <div className="services-timeline">
@@ -912,8 +1123,8 @@ function ServicesPage() {
 
       <section className="services-page-section section-frame services-capability-section">
         <div className="section-heading narrow">
-          <span className="section-kicker">Section four</span>
-          <h2>Capability layers arranged as asymmetric content blocks for a more editorial feel.</h2>
+          <span className="section-kicker">Capability layers</span>
+          <h2>Creative capability layers organised to show strategy design content and launch support in one system.</h2>
         </div>
 
         <div className="services-capability-layout">
@@ -932,8 +1143,8 @@ function ServicesPage() {
 
       <section className="services-page-section section-frame services-parallax-section">
         <div className="section-heading narrow">
-          <span className="section-kicker">Creative section three</span>
-          <h2>Offset feature blocks inspired by award winning agency layouts and parallax style composition.</h2>
+          <span className="section-kicker">Featured advantages</span>
+          <h2>Key service advantages that help brands improve visibility trust and premium customer perception online.</h2>
         </div>
 
         <div className="services-parallax-grid">
@@ -949,30 +1160,30 @@ function ServicesPage() {
 
       <section className="services-page-section section-frame services-proof-section">
         <div className="section-heading">
-          <span className="section-kicker">Section six</span>
-          <h2>The service experience is built to create clarity speed and a stronger premium perception across every stage.</h2>
+          <span className="section-kicker">Service outcomes</span>
+          <h2>Every service engagement is built to create clarity speed and long term premium brand value.</h2>
         </div>
 
         <div className="services-proof-panel">
           <div>
             <strong>Strategic alignment</strong>
-            <p>Every engagement starts by reducing confusion and establishing a clearer route toward creative and commercial focus.</p>
+            <p>Every engagement starts by creating a clearer direction for brand positioning website goals and commercial growth.</p>
           </div>
           <div>
             <strong>Refined execution</strong>
-            <p>Layouts motion and systems are developed with restraint so the work feels elevated rather than overloaded.</p>
+            <p>Layouts motion and content systems are developed with discipline so the experience feels premium clear and effective.</p>
           </div>
           <div>
             <strong>Long term value</strong>
-            <p>The output is designed to support launches future iterations and a more consistent brand presence over time.</p>
+            <p>The final output is designed to support launch success future updates and a more consistent brand presence across channels.</p>
           </div>
         </div>
       </section>
 
       <section className="services-page-section section-frame services-faq-section">
         <div className="section-heading narrow">
-          <span className="section-kicker">Section seven</span>
-          <h2>Questions that help clients understand how the services can be structured.</h2>
+          <span className="section-kicker">Service questions</span>
+          <h2>Frequently asked questions that explain how our creative services are structured for modern businesses.</h2>
         </div>
 
         <div className="services-faq-grid">
@@ -989,10 +1200,12 @@ function ServicesPage() {
             Back to home
           </Link>
           <a className="secondary-button" href="mailto:hello@astraatelier.studio">
-            Book a service consultation
+            Book a creative service consultation
           </a>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }
